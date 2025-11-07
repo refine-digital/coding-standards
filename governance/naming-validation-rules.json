@@ -1,0 +1,600 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "1.0.0",
+  "description": "Machine-readable naming validation rules for refine.digital IaC projects",
+  "rules": {
+    "github_repo": {
+      "pattern": "^[a-z0-9-]+$",
+      "format": "kebab-case",
+      "max_length": 50,
+      "min_length": 3,
+      "required_prefix": false,
+      "allowed_prefixes": [
+        "infrastructure-",
+        "k8s-",
+        "app-",
+        "module-",
+        "tool-",
+        "config-",
+        "docs-"
+      ],
+      "description": "GitHub repository names must be kebab-case with optional category prefix",
+      "examples": {
+        "valid": [
+          "infrastructure-vpc",
+          "k8s-cluster-prod",
+          "module-vpc",
+          "tool-deployment-scripts"
+        ],
+        "invalid": [
+          "Infrastructure-VPC",
+          "infrastructure_vpc",
+          "InfrastructureVPC",
+          "my-vpc"
+        ]
+      },
+      "error_messages": {
+        "pattern": "Repository name must be lowercase letters, numbers, and hyphens only",
+        "max_length": "Repository name must be 50 characters or less",
+        "prefix": "Consider using a category prefix (infrastructure-, k8s-, app-, module-, tool-, config-, docs-)"
+      }
+    },
+    "local_folder": {
+      "pattern": "^[a-z0-9-]+$",
+      "format": "kebab-case",
+      "must_match": "github_repo",
+      "description": "Local folder names must match GitHub repository names exactly",
+      "examples": {
+        "valid": [
+          "infrastructure-vpc",
+          "k8s-monitoring-stack"
+        ],
+        "invalid": [
+          "Infrastructure-VPC",
+          "infrastructure_vpc"
+        ]
+      },
+      "error_messages": {
+        "pattern": "Folder name must be kebab-case (lowercase with hyphens)",
+        "must_match": "Folder name must exactly match the GitHub repository name"
+      }
+    },
+    "terraform_resource": {
+      "pattern": "^[a-z0-9_]+$",
+      "format": "snake_case",
+      "max_length": 64,
+      "description": "Terraform resource names must be snake_case",
+      "examples": {
+        "valid": [
+          "vpc_main",
+          "subnet_public_a",
+          "nat_gateway_prod",
+          "eks_cluster_main"
+        ],
+        "invalid": [
+          "vpcMain",
+          "vpc-main",
+          "VpcMain",
+          "VPC_MAIN"
+        ]
+      },
+      "error_messages": {
+        "pattern": "Terraform resource names must be lowercase letters, numbers, and underscores only (snake_case)",
+        "max_length": "Resource name must be 64 characters or less"
+      }
+    },
+    "terraform_variable": {
+      "pattern": "^[a-z0-9_]+$",
+      "format": "snake_case",
+      "max_length": 64,
+      "description": "Terraform variable names must be snake_case",
+      "examples": {
+        "valid": [
+          "vpc_cidr_block",
+          "environment_name",
+          "instance_type",
+          "enable_nat_gateway"
+        ],
+        "invalid": [
+          "vpcCidrBlock",
+          "vpc-cidr-block",
+          "VpcCidrBlock",
+          "CIDR"
+        ]
+      },
+      "error_messages": {
+        "pattern": "Variable names must be lowercase letters, numbers, and underscores only (snake_case)",
+        "max_length": "Variable name must be 64 characters or less"
+      }
+    },
+    "terraform_output": {
+      "pattern": "^[a-z0-9_]+$",
+      "format": "snake_case",
+      "max_length": 64,
+      "description": "Terraform output names must be snake_case",
+      "examples": {
+        "valid": [
+          "vpc_id",
+          "subnet_ids",
+          "nat_gateway_ips",
+          "cluster_endpoint"
+        ],
+        "invalid": [
+          "vpcId",
+          "vpc-id",
+          "VpcId",
+          "id"
+        ]
+      },
+      "error_messages": {
+        "pattern": "Output names must be lowercase letters, numbers, and underscores only (snake_case)",
+        "max_length": "Output name must be 64 characters or less"
+      }
+    },
+    "terraform_module_folder": {
+      "pattern": "^[a-z0-9-]+$",
+      "format": "kebab-case",
+      "max_length": 50,
+      "description": "Terraform module folder names must be kebab-case",
+      "examples": {
+        "valid": [
+          "vpc",
+          "eks-cluster",
+          "nat-gateway",
+          "rds-instance"
+        ],
+        "invalid": [
+          "vpc_module",
+          "EksCluster",
+          "NAT_Gateway"
+        ]
+      },
+      "error_messages": {
+        "pattern": "Module folder names must be kebab-case (lowercase with hyphens)",
+        "max_length": "Module folder name must be 50 characters or less"
+      }
+    },
+    "terraform_file": {
+      "pattern": "^[a-z0-9_-]+\\.tf$",
+      "format": "snake_case.tf or kebab-case.tf",
+      "description": "Terraform files must end with .tf",
+      "standard_files": [
+        "main.tf",
+        "variables.tf",
+        "outputs.tf",
+        "versions.tf",
+        "providers.tf",
+        "backend.tf",
+        "locals.tf",
+        "data.tf"
+      ],
+      "examples": {
+        "valid": [
+          "main.tf",
+          "variables.tf",
+          "vpc.tf",
+          "nat_gateway.tf",
+          "eks-cluster.tf"
+        ],
+        "invalid": [
+          "Main.tf",
+          "variables.TF",
+          "vpc.terraform"
+        ]
+      },
+      "error_messages": {
+        "pattern": "Terraform files must be lowercase and end with .tf extension"
+      }
+    },
+    "yaml_file": {
+      "pattern": "^[a-z0-9-]+\\.(yml|yaml)$",
+      "format": "kebab-case.yml",
+      "preferred_extension": ".yml",
+      "description": "YAML files must be kebab-case with .yml or .yaml extension",
+      "examples": {
+        "valid": [
+          "docker-compose.yml",
+          "terraform-validate.yml",
+          "deployment.yml",
+          "config.yaml"
+        ],
+        "invalid": [
+          "dockerCompose.yml",
+          "Terraform_Validate.yml",
+          "DEPLOYMENT.YML"
+        ]
+      },
+      "error_messages": {
+        "pattern": "YAML files must be kebab-case with .yml or .yaml extension",
+        "preferred_extension": "Prefer .yml over .yaml for consistency"
+      }
+    },
+    "yaml_key": {
+      "pattern": "^[a-z0-9_]+$",
+      "format": "snake_case",
+      "description": "YAML keys should be snake_case (except for tool-specific conventions)",
+      "exceptions": [
+        "GitHub Actions (kebab-case)",
+        "Kubernetes (camelCase)"
+      ],
+      "examples": {
+        "valid": [
+          "environment_name",
+          "vpc_cidr_block",
+          "enable_monitoring"
+        ],
+        "invalid": [
+          "environmentName",
+          "environment-name",
+          "EnvironmentName"
+        ]
+      },
+      "error_messages": {
+        "pattern": "YAML keys should be snake_case (unless following tool conventions like GitHub Actions or Kubernetes)"
+      }
+    },
+    "markdown_file_root": {
+      "pattern": "^[A-Z_]+\\.md$",
+      "format": "UPPER_SNAKE_CASE.md",
+      "description": "Root-level markdown files must be UPPERCASE",
+      "standard_files": [
+        "README.md",
+        "CONTRIBUTING.md",
+        "CHANGELOG.md",
+        "LICENSE.md",
+        "SECURITY.md",
+        "CODE_OF_CONDUCT.md"
+      ],
+      "examples": {
+        "valid": [
+          "README.md",
+          "CONTRIBUTING.md",
+          "CHANGELOG.md"
+        ],
+        "invalid": [
+          "readme.md",
+          "Readme.md",
+          "ReadMe.md"
+        ]
+      },
+      "error_messages": {
+        "pattern": "Root-level markdown files must be UPPERCASE (README.md, CONTRIBUTING.md, etc.)"
+      }
+    },
+    "markdown_file_nested": {
+      "pattern": "^[a-z0-9-]+\\.md$",
+      "format": "kebab-case.md",
+      "description": "Nested markdown files (in docs/ etc.) must be kebab-case",
+      "examples": {
+        "valid": [
+          "architecture.md",
+          "deployment-guide.md",
+          "api-reference.md"
+        ],
+        "invalid": [
+          "Architecture.md",
+          "deployment_guide.md",
+          "APIReference.md"
+        ]
+      },
+      "error_messages": {
+        "pattern": "Nested markdown files must be kebab-case (lowercase with hyphens)"
+      }
+    },
+    "shell_script": {
+      "pattern": "^[a-z0-9-]+\\.sh$",
+      "format": "kebab-case.sh",
+      "description": "Shell scripts must be kebab-case with .sh extension",
+      "examples": {
+        "valid": [
+          "deploy-infrastructure.sh",
+          "validate-terraform.sh",
+          "setup-environment.sh"
+        ],
+        "invalid": [
+          "deployInfrastructure.sh",
+          "Deploy_Infrastructure.sh",
+          "deploy.bash"
+        ]
+      },
+      "error_messages": {
+        "pattern": "Shell scripts must be kebab-case with .sh extension"
+      }
+    },
+    "shell_variable_constant": {
+      "pattern": "^[A-Z0-9_]+$",
+      "format": "UPPER_SNAKE_CASE",
+      "description": "Shell constants and exported variables must be UPPER_SNAKE_CASE",
+      "examples": {
+        "valid": [
+          "ENVIRONMENT",
+          "VPC_ID",
+          "AWS_REGION",
+          "MAX_RETRIES"
+        ],
+        "invalid": [
+          "environment",
+          "vpcId",
+          "aws-region"
+        ]
+      },
+      "error_messages": {
+        "pattern": "Shell constants must be UPPER_SNAKE_CASE (uppercase with underscores)"
+      }
+    },
+    "shell_variable_local": {
+      "pattern": "^[a-z0-9_]+$",
+      "format": "lower_snake_case",
+      "description": "Shell local variables must be lower_snake_case",
+      "examples": {
+        "valid": [
+          "vpc_cidr_block",
+          "subnet_count",
+          "deployment_status"
+        ],
+        "invalid": [
+          "vpcCidrBlock",
+          "VPC_CIDR_BLOCK",
+          "vpc-cidr-block"
+        ]
+      },
+      "error_messages": {
+        "pattern": "Shell local variables must be lower_snake_case (lowercase with underscores)"
+      }
+    },
+    "shell_function": {
+      "pattern": "^[a-z0-9_]+$",
+      "format": "snake_case",
+      "description": "Shell function names must be snake_case",
+      "examples": {
+        "valid": [
+          "deploy_infrastructure",
+          "validate_config",
+          "cleanup_resources",
+          "get_vpc_id"
+        ],
+        "invalid": [
+          "deployInfrastructure",
+          "Deploy_Infrastructure",
+          "DEPLOY"
+        ]
+      },
+      "error_messages": {
+        "pattern": "Shell function names must be snake_case (lowercase with underscores)"
+      }
+    },
+    "environment_name": {
+      "pattern": "^[a-z]+$",
+      "format": "lowercase",
+      "allowed_values": [
+        "dev",
+        "staging",
+        "prod",
+        "test",
+        "sandbox"
+      ],
+      "description": "Environment names must be lowercase single words",
+      "examples": {
+        "valid": [
+          "dev",
+          "staging",
+          "prod"
+        ],
+        "invalid": [
+          "Dev",
+          "PROD",
+          "production",
+          "dev-1"
+        ]
+      },
+      "error_messages": {
+        "pattern": "Environment names must be lowercase letters only",
+        "allowed_values": "Use standard environment names: dev, staging, prod, test, sandbox"
+      }
+    },
+    "git_branch": {
+      "pattern": "^(feature|bugfix|hotfix|chore|docs|refactor|test)/[a-z0-9-]+(-[A-Z]+-[0-9]+)?$",
+      "format": "type/description or type/description-TICKET-123",
+      "allowed_types": [
+        "feature",
+        "bugfix",
+        "hotfix",
+        "chore",
+        "docs",
+        "refactor",
+        "test"
+      ],
+      "description": "Git branches must follow type/description pattern",
+      "examples": {
+        "valid": [
+          "feature/vpc-setup",
+          "bugfix/terraform-state-lock",
+          "hotfix/security-group-rule",
+          "feature/vpc-setup-PROJ-123"
+        ],
+        "invalid": [
+          "Feature/vpc-setup",
+          "feature/VPCSetup",
+          "vpc-setup",
+          "feature/"
+        ]
+      },
+      "error_messages": {
+        "pattern": "Branch name must follow pattern: type/description (e.g., feature/vpc-setup)",
+        "allowed_types": "Branch type must be one of: feature, bugfix, hotfix, chore, docs, refactor, test"
+      }
+    },
+    "git_tag": {
+      "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+(-[a-z]+[0-9]*)?$",
+      "format": "vMAJOR.MINOR.PATCH or vMAJOR.MINOR.PATCH-suffix",
+      "description": "Git tags must follow semantic versioning with 'v' prefix",
+      "examples": {
+        "valid": [
+          "v1.0.0",
+          "v2.3.5",
+          "v1.0.0-beta",
+          "v1.0.0-rc1",
+          "v1.0.0-alpha"
+        ],
+        "invalid": [
+          "1.0.0",
+          "V1.0.0",
+          "v1.0",
+          "version-1.0.0"
+        ]
+      },
+      "error_messages": {
+        "pattern": "Tag must follow semantic versioning: v{major}.{minor}.{patch} (e.g., v1.0.0)"
+      }
+    },
+    "vscode_workspace": {
+      "pattern": "^[a-z0-9-]+\\.code-workspace$",
+      "format": "kebab-case.code-workspace",
+      "must_match": "github_repo",
+      "description": "VS Code workspace files must match repository name",
+      "examples": {
+        "valid": [
+          "infrastructure-vpc.code-workspace",
+          "k8s-monitoring-stack.code-workspace"
+        ],
+        "invalid": [
+          "Infrastructure-VPC.code-workspace",
+          "workspace.code-workspace",
+          "infrastructure_vpc.code-workspace"
+        ]
+      },
+      "error_messages": {
+        "pattern": "Workspace file must be kebab-case with .code-workspace extension",
+        "must_match": "Workspace filename must match repository name"
+      }
+    },
+    "aws_resource_name": {
+      "pattern": "^[a-z0-9-]+$",
+      "format": "kebab-case",
+      "structure": "{project}-{resource}-{environment}",
+      "max_length": 255,
+      "description": "AWS resource Name tags must be kebab-case following project-resource-environment pattern",
+      "examples": {
+        "valid": [
+          "infrastructure-vpc-prod",
+          "infrastructure-subnet-public-a-prod",
+          "k8s-cluster-staging"
+        ],
+        "invalid": [
+          "Infrastructure_VPC_Prod",
+          "infrastructureVPCProd",
+          "my-vpc"
+        ]
+      },
+      "error_messages": {
+        "pattern": "AWS resource Name tag must be kebab-case (lowercase with hyphens)",
+        "structure": "Follow pattern: {project}-{resource}-{environment}",
+        "max_length": "AWS resource name must be 255 characters or less"
+      }
+    },
+    "config_file": {
+      "pattern": "^[a-z0-9.-]+\\.(conf|config|env)$",
+      "format": "kebab-case.{ext}",
+      "description": "Configuration files should be kebab-case",
+      "exceptions": [
+        ".editorconfig",
+        ".gitignore",
+        ".gitattributes"
+      ],
+      "examples": {
+        "valid": [
+          "nginx.conf",
+          "nginx-custom.conf",
+          "app.config",
+          "dev.env"
+        ],
+        "invalid": [
+          "Nginx.conf",
+          "nginx_custom.conf",
+          "APP.CONFIG"
+        ]
+      },
+      "error_messages": {
+        "pattern": "Configuration files should be kebab-case (lowercase with hyphens or dots)"
+      }
+    }
+  },
+  "validation_levels": {
+    "error": {
+      "description": "Must be fixed before commit/deploy",
+      "rules": [
+        "github_repo",
+        "terraform_resource",
+        "terraform_variable",
+        "git_branch",
+        "git_tag"
+      ]
+    },
+    "warning": {
+      "description": "Should be fixed but not blocking",
+      "rules": [
+        "terraform_module_folder",
+        "yaml_key",
+        "shell_function",
+        "config_file"
+      ]
+    },
+    "info": {
+      "description": "Best practice suggestions",
+      "rules": [
+        "yaml_file.preferred_extension",
+        "markdown_file_nested"
+      ]
+    }
+  },
+  "auto_fix_available": {
+    "description": "Rules that can be automatically fixed",
+    "rules": [
+      "terraform_file",
+      "yaml_file",
+      "markdown_file_nested",
+      "shell_script"
+    ],
+    "transformations": {
+      "to_kebab_case": {
+        "from": ["PascalCase", "camelCase", "snake_case", "UPPER_CASE"],
+        "to": "kebab-case",
+        "example": "MyProjectName -> my-project-name"
+      },
+      "to_snake_case": {
+        "from": ["PascalCase", "camelCase", "kebab-case", "UPPER_CASE"],
+        "to": "snake_case",
+        "example": "MyVariableName -> my_variable_name"
+      },
+      "to_upper_snake_case": {
+        "from": ["PascalCase", "camelCase", "kebab-case", "lower_case"],
+        "to": "UPPER_SNAKE_CASE",
+        "example": "myConstant -> MY_CONSTANT"
+      }
+    }
+  },
+  "exceptions": {
+    "description": "Files and patterns that are exempt from validation",
+    "patterns": [
+      "node_modules/**",
+      ".terraform/**",
+      ".git/**",
+      "vendor/**",
+      "*.lock.hcl",
+      "Dockerfile",
+      "Makefile"
+    ],
+    "third_party_conventions": [
+      ".github/",
+      ".vscode/",
+      "node_modules/",
+      ".terraform/"
+    ]
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "last_updated": "2025-11-07",
+    "maintained_by": "refine.digital Platform Team",
+    "source": "https://github.com/refine-digital/development-standards"
+  }
+}
