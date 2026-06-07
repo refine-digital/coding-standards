@@ -127,13 +127,14 @@ development-standards/
 - **Real examples** (good vs bad) for every pattern
 - **Validation rules** with regex patterns
 
-### 🤖 AI Integration (MCP)
+### 🤖 AI-Assisted Validation
 
-- **MCP server** for Claude Code integration
-- **OpenRouter-powered** (FREE models available)
-- Query standards in natural language
-- Real-time validation during coding
+- **Claude Code Router** with OpenRouter integration
+- **Real-time validation** using natural language queries
+- **Cost-effective**: ~$1-5/month (95% savings vs direct Claude API)
+- Query standards interactively
 - Auto-generate compliant code
+- See [../AI-ASSISTED-VALIDATION.md](../AI-ASSISTED-VALIDATION.md) for setup
 
 ### 🛠️ Automation
 
@@ -191,15 +192,28 @@ Checking project against refine.digital standards...
 Run 'refine-standards fix --auto' to fix automatically
 ```
 
-## OpenRouter Model Recommendations
+## AI-Assisted Validation with Claude Code Router
 
-For AI-assisted development, see [OPENROUTER-MODELS.md](../OPENROUTER-MODELS.md) for:
+**Now Available**: Use AI to validate naming standards and query documentation in real-time!
 
-- **FREE models**: DeepSeek Chat (development/testing)
-- **COST-EFFECTIVE**: DeepSeek Coder V2 ($0.27/$1.10 per 1M tokens)
-- **PREMIUM**: Claude 3.7 Sonnet ($3/$15 per 1M tokens)
-- **Tiered approach**: Smart routing based on query complexity
-- **Expected cost**: $10-20/month for moderate usage
+```bash
+# Start the router (if not already running)
+ccr start
+
+# Validate naming
+echo "Is 'infrastructure-vpc' valid?" | ccr code
+
+# Query standards
+echo "What are Terraform resource naming conventions?" | ccr code
+```
+
+**Benefits**:
+- Real-time standards validation
+- Interactive documentation queries
+- Cost-effective: ~$1-5/month
+- 95% savings vs direct Claude API
+
+See [../AI-ASSISTED-VALIDATION.md](../AI-ASSISTED-VALIDATION.md) for complete setup guide and [../Claude Code Router](../../Claude%20Code%20Router) project for installation.
 
 ## Installation
 
@@ -237,29 +251,35 @@ pre-commit install
 refine-standards hooks install
 ```
 
-## Integration with Claude Code
+## Integration with Your Workflow
 
-Add to your project's `.claude/mcp-config.json`:
+### Claude Code Router (Ready Now)
 
-```json
-{
-  "mcpServers": {
-    "standards": {
-      "url": "http://localhost:3000",
-      "description": "refine.digital development standards",
-      "model": "deepseek/deepseek-coder"
-    }
-  }
-}
+The Claude Code Router is installed and configured. Use it to validate naming and query standards:
+
+```bash
+# Validate naming conventions
+echo "Is 'infrastructure-vpc' a valid repository name?" | ccr code
+
+# Generate compliant code
+echo "Generate Terraform module for VPC following refine.digital standards" | ccr code
+
+# Query documentation
+echo "What are the YAML file naming conventions?" | ccr code
 ```
 
-Then in Claude Code:
+See [../AI-ASSISTED-VALIDATION.md](../AI-ASSISTED-VALIDATION.md) for:
+- Pre-commit hook integration
+- VS Code task examples
+- GitHub Actions workflows
+- Batch validation scripts
 
-```
-User: "Create a new Terraform module for VPC"
-Claude: [Queries standards MCP server]
-Claude: [Generates code following exact standards]
-```
+### Traditional MCP Server (Coming Soon)
+
+Future MCP server integration will enable:
+- Direct Claude Code integration via MCP protocol
+- Local standards API server
+- Custom tool definitions
 
 ## Quick Reference
 

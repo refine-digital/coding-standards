@@ -774,7 +774,7 @@ https://www.shellcheck.net/
 
 #### ShellCheck Configuration (.shellcheckrc)
 
-Create `/Users/refine/ProjectFiles/Coding Standards/development-standards/language-guides/.shellcheckrc`:
+Create `/Users/mattias/ProjectFiles/Coding Standards/development-standards/language-guides/.shellcheckrc`:
 
 ```ini
 # ShellCheck configuration file
