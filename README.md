@@ -2,7 +2,7 @@
 
 > AI-Native Infrastructure-as-Code Development Standards Framework
 
-[![Standards](https://img.shields.io/badge/standards-IaC-blue)](https://github.com/refine-digital/development-standards)
+[![Standards](https://img.shields.io/badge/standards-IaC-blue)](https://github.com/refinedigital/development-standards)
 [![Version](https://img.shields.io/badge/version-1.0.0-green)]()
 
 ## Overview
@@ -340,8 +340,8 @@ refine-standards check
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/refine-digital/development-standards/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/refine-digital/development-standards/discussions)
+- **Issues**: [GitHub Issues](https://github.com/refinedigital/development-standards/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/refinedigital/development-standards/discussions)
 - **Email**: platform-team@refine.digital
 
 ## License

@@ -307,7 +307,7 @@ module "vpc" {
 
 # Git modules
 module "vpc" {
-  source = "git::https://github.com/refine-digital/module-vpc.git?ref=v1.0.0"
+  source = "git::https://github.com/refinedigital/module-vpc.git?ref=v1.0.0"
 }
 ```
 
@@ -829,7 +829,7 @@ app-api-gateway.code-workspace
 
 ## Standards Compliance
 
-This project follows [refine.digital Development Standards](https://github.com/refine-digital/development-standards).
+This project follows [refine.digital Development Standards](https://github.com/refinedigital/development-standards).
 
 \`\`\`bash
 # Check compliance
@@ -945,7 +945,7 @@ module-vpc/
 **Usage**:
 ```hcl
 module "vpc" {
-  source = "git::https://github.com/refine-digital/module-vpc.git?ref=v1.0.0"
+  source = "git::https://github.com/refinedigital/module-vpc.git?ref=v1.0.0"
 
   vpc_name     = "my-vpc"
   vpc_cidr     = "10.0.0.0/16"

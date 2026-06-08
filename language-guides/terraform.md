@@ -1930,7 +1930,7 @@ provider "aws" {
       Project     = var.project_name
       Environment = var.environment
       ManagedBy   = "Terraform"
-      Repository  = "https://github.com/refine-digital/infrastructure-vpc"
+      Repository  = "https://github.com/refinedigital/infrastructure-vpc"
     }
   }
 }
@@ -2229,7 +2229,7 @@ For modules in separate repositories:
 ```hcl
 # Use semver tags
 module "vpc" {
-  source = "git::https://github.com/refine-digital/module-vpc.git?ref=v1.0.0"
+  source = "git::https://github.com/refinedigital/module-vpc.git?ref=v1.0.0"
 
   # Configuration
   vpc_cidr_block = var.vpc_cidr_block
@@ -2237,14 +2237,14 @@ module "vpc" {
 
 # Pin to specific commit
 module "eks" {
-  source = "git::https://github.com/refine-digital/module-eks-cluster.git?ref=abc123def456"
+  source = "git::https://github.com/refinedigital/module-eks-cluster.git?ref=abc123def456"
 
   # Configuration
 }
 
 # Use major version constraints
 module "rds" {
-  source = "git::https://github.com/refine-digital/module-rds.git?ref=v2"
+  source = "git::https://github.com/refinedigital/module-rds.git?ref=v2"
 
   # Configuration
 }
@@ -2417,4 +2417,4 @@ terraform-docs              # Generate docs
 **Document Version**: 1.0.0
 **Last Updated**: 2025-11-07
 **Maintained By**: refine.digital Platform Team
-**Repository**: https://github.com/refine-digital/development-standards
+**Repository**: https://github.com/refinedigital/development-standards

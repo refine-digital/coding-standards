@@ -455,7 +455,7 @@ See [examples/](examples/) directory for usage examples:
 
 ## Standards Compliance
 
-This project follows [refine.digital Development Standards](https://github.com/refine-digital/development-standards).
+This project follows [refine.digital Development Standards](https://github.com/refinedigital/development-standards).
 
 \`\`\`bash
 # Check compliance
@@ -492,7 +492,7 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) for deta
 
 - Built with [Terraform](https://terraform.io)
 - Follows [HashiCorp best practices](https://terraform.io/docs/cloud/guides/recommended-practices)
-- Uses [refine.digital standards](https://github.com/refine-digital/development-standards)
+- Uses [refine.digital standards](https://github.com/refinedigital/development-standards)
 
 ---
 
@@ -851,7 +851,7 @@ make lint
 
 ### Standards
 
-Follow [refine.digital Development Standards](https://github.com/refine-digital/development-standards).
+Follow [refine.digital Development Standards](https://github.com/refinedigital/development-standards).
 
 \`\`\`bash
 refine-standards check
@@ -921,7 +921,7 @@ Use shields.io for consistency:
 
 ```markdown
 [![Build Status](https://github.com/user/repo/workflows/CI/badge.svg)](https://github.com/user/repo/actions)
-[![Standards](https://img.shields.io/badge/standards-compliant-green)](https://github.com/refine-digital/development-standards)
+[![Standards](https://img.shields.io/badge/standards-compliant-green)](https://github.com/refinedigital/development-standards)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 ```
 
